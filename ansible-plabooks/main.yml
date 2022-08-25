@@ -1,0 +1,11 @@
+- hosts: all
+  become: yes
+  user: vagrant
+  gather_facts: no
+  pre_tasks:
+  - name: 'Repository Updating'
+    raw: apt-get update -y
+  - name: 'Install python 3'
+    raw: 'apt-get install -y python3'
+  roles:
+  - { role: docker-install, tags: ["install_docker"] }
