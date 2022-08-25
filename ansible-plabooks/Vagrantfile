@@ -1,0 +1,28 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+NODES_NUMBER = 3
+
+ENV['VAGRANT_DEFAULT_PROVIDER'] = 'libvirt'
+
+Vagrant.configure("2") do |config|
+    (1..NODES_NUMBER).each do |i|
+        config.vm.define "node-#{i}" do |docker|
+            docker.vm.box = "generic/ubuntu2004"
+            docker.vm.hostname = "node-#{i}"
+            docker.vm.synced_folder ".", "/vagrant_data", disabled: true
+            docker.vm.provider :libvirt do |libvirt|
+                libvirt.cpus = 2
+                libvirt.memory = 2048
+                libvirt.default_prefix = ""
+            end
+
+            docker.ssh.insert_key = false
+            docker.ssh.private_key_path = ["~/.ssh/id_rsa", "~/.vagrant.d/insecure_private_key"]
+
+            docker.vm.provision :ansible do |ansible|
+                ansible.playbook = "./deploy.yml"
+            end
+        end
+    end
+end
