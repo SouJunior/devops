@@ -1,2 +1,4 @@
 ---
 # vars file for roles/docker-install
+
+user_for_groups: vagrant
