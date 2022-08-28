@@ -19,14 +19,14 @@
 
 - name: install docker 
   apt:
-    name: 
+    name: "{{ packages }}"
+    state: latest
+    update_cache: yes
+  vars:
+    packages:
       - docker-ce
       - docker-ce-cli
       - containerd.io
-    update_cache: yes
-
-- name: add userpermissions
-  shell: "usermod -aG docker {{ user_for_groups }}"
 
 # Installs Docker SDK
 - name: install python package manager
@@ -34,8 +34,14 @@
     name: python3-pip
 
 - name: install python sdk
-  become_user: {{ user_for_groups }}
+  become_user: "{{ user_for_groups }}"
   pip:
     name:
       - docker
       - docker-compose
+
+- name: Add user "{{ user_for_groups }}" to docker group
+  user: 
+    name: "{{ user_for_groups }}"
+    group: docker
+    append: yes
