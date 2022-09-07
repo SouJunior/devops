@@ -1,0 +1,3 @@
+---
+# tasks file for docker-swarm
+- include_tasks: swarm-init.yml

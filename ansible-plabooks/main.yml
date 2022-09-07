@@ -9,3 +9,4 @@
     raw: 'apt-get install -y python3'
   roles:
   - { role: docker-install, tags: ["install_docker"] }
+  - { role: docker-swarm, tags: ["swarm"] }
