@@ -1,0 +1,22 @@
+- name: set_fact | figure out network device of private network
+  set_fact:
+    private_interface: "{{ hostvars[inventory_hostname]['ansible_' + item]['device'] }}"
+  when:
+    - hostvars[inventory_hostname]['ansible_' + item].ipv4 is defined
+    - hostvars[inventory_hostname]['ansible_' + item]['ipv4']['address'] | ansible.utils.ipaddr("{{ mgmt_net }}")
+  with_items: "{{ ansible_interfaces }}"
+
+- name: Debugando varivel
+  debug:
+    msg:
+    - "MASTER NODE IP: {{ hostvars['MASTER_NODE']['ip_addr']}}"
+    - "MASTER NODE TOKEN: {{ hostvars['MASTER_NODE']['token']}}"
+    - "TOKEN DE ACESSO: {{ hostvars['MASTER_NODE']['ip_addr']}}:{{ DS_MASTER_PORT }}"
+    - "INTERFACE PRIVADA DO NODE: {{ private_interface }}"
+
+- name: Add nodes
+  community.docker.docker_swarm:
+    state: join
+    advertise_addr: "{{ private_interface }}"
+    join_token: "{{ hostvars['MASTER_NODE']['token']}}"
+    remote_addrs: "{{ hostvars['MASTER_NODE']['ip_addr']}}:{{ DS_MASTER_PORT }}"

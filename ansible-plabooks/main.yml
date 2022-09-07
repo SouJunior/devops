@@ -1,11 +1,31 @@
 - hosts: all
   become: yes
   user: vagrant
-  gather_facts: no
+  gather_facts: yes
   pre_tasks:
   - name: 'Repository Updating'
     raw: apt-get update -y
   - name: 'Install python 3'
     raw: 'apt-get install -y python3'
+  vars_files:
+  - ./vars/main.yml
   roles:
   - { role: docker-install, tags: ["install_docker"] }
+
+# - hosts: all
+#   vars_files:
+#   - ./vars/main.yml
+#   tags:
+#   - cluster
+  
+- hosts: ds_masters
+  roles:
+  - { role: docker-swarm, tags: ["swarm", "cluster"] }
+  vars_files:
+  - ./vars/main.yml
+
+- hosts: ds_workers
+  roles:
+  - { role: nodes-mgmt, tags: ["nodes", "cluster"] }
+  vars_files:
+  - ./vars/main.yml

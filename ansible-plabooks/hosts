@@ -1,0 +1,14 @@
+[all:vars]
+ansible_user='vagrant'
+ansible_become=yes
+private_key_file=~/.ssh/id_rsa
+DS_MASTER_PORT=2377
+host_key_checking=False
+ansible_ssh_extra_args = '-o StrictHostKeyChecking=no'
+
+[ds_masters]
+10.10.10.11
+
+[ds_workers]
+10.10.10.12
+10.10.10.13
