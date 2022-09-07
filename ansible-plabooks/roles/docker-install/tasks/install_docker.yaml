@@ -35,7 +35,7 @@
     name: python3-pip
 
 - name: install python sdk
-  become_user: "{{ user_for_groups }}"
+  become_user: "{{ user }}"
   pip:
     name:
       - docker
@@ -46,8 +46,14 @@
       - backports.ssl_match_hostname
       # - pywin32
 
-- name: Add user "{{ user_for_groups }}" to docker group
+- name: Add user "{{ user }}" to docker group
   user: 
-    name: "{{ user_for_groups }}"
-    group: docker
+    name: "{{ user }}"
+    groups: docker, sudo, adm 
     append: yes
+
+- name: Set authorized key for user {{ user }} copying it from current user
+  ansible.posix.authorized_key:
+    user: "{{ user }}"
+    state: present
+    key: "{{ lookup('file', lookup('env','HOME') + '/.ssh/id_rsa.pub') }}"
