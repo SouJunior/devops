@@ -1,0 +1,2 @@
+user: vagrant
+mgmt_net: 10.10.10.0/24
