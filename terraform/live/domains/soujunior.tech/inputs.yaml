@@ -2,49 +2,49 @@
 
 www:
   type: A
-  ttl: 3600
+  ttl: 120
   records:
     - 35.199.181.187
     - 35.185.199.199
 
 soujunior.tech:
   type: A
-  ttl: 3600
+  ttl: 120
   records:
     - 50.18.215.94
     - 35.247.66.204
 
 teleport:
   type: A
-  ttl: 3600
+  ttl: 120
   records: &teleport
     - 144.22.200.151
 
 vagas-backend:
   type: A
-  ttl: 3600
+  ttl: 120
   records:
     - 54.236.43.228
 
 traefik.internal:
   type: A
-  ttl: 3600
+  ttl: 120
   records: *teleport
 
 autoconfig:
   type: CNAME
-  ttl: 3600
+  ttl: 120
   records:
     - autoconfig.mail.hostinger.com
 
 autodiscover:
   type: CNAME
-  ttl: 3600
+  ttl: 120
   records:
     - autodiscover.mail.hostinger.com
 
 webmail:
   type: CNAME
-  ttl: 3600
+  ttl: 120
   records:
     - clcp.hostinger.com
