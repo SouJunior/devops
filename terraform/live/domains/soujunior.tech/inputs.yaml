@@ -20,6 +20,12 @@ teleport:
   records: &teleport
     - 144.22.200.151
 
+vagas-backend:
+  type: A
+  ttl: 3600
+  records:
+    - 54.236.43.228
+
 traefik.internal:
   type: A
   ttl: 3600
