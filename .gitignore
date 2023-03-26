@@ -1,5 +1,6 @@
 # Local .terraform directories
 **/.terraform/*
+**/.terraform.lock.hcl
 
 # .tfstate files
 *.tfstate
@@ -37,11 +38,11 @@ override.tf.json
 *.retry
 *.*~
 
-# Tower runtime roles 
+# Tower runtime roles
 roles/**
 !roles/requirements.yml
 
-# Try tyo avoid any plain-text passwords 
+# Try tyo avoid any plain-text passwords
 *pwd*
 *pass*
 *password*

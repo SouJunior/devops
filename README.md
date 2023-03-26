@@ -36,6 +36,7 @@ Esse projeto é usado pela [SouJunior](https://github.com/SouJunior).
 ## Autor(es) 🙎🏻‍♂️
 
 - Juam Sousa | [GitHub](https://github.com/juam-sv) - [LinkedIn](https://www.linkedin.com/in/juam-sv/)
+- Ronald Carvalho | [GitHub](https://github.com/ronaldmiranda) - [LinkedIn](https://www.linkedin.com/in/rmirandaa/)
 
 ## Feedback
 
