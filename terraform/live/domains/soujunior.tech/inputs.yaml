@@ -8,11 +8,10 @@ www:
     - 35.185.199.199
 
 soujunior.tech:
-  type: A
+  type: CNAME
   ttl: 120
   records:
-    - 50.18.215.94
-    - 35.247.66.204
+    - soujunior.netlify.app
 
 teleport:
   type: A
