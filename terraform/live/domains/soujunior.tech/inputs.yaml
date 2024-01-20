@@ -22,13 +22,13 @@ vagas-backend:
   type: A
   ttl: 120
   records:
-    - 35.153.124.104
+    - 44.201.182.206
 
 mentores-backend:
   type: A
   ttl: 120
   records:
-    - 35.153.124.104
+    - 44.201.182.206
 
 traefik.internal:
   type: A
